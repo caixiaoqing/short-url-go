@@ -47,4 +47,10 @@ var routes = Routes{
 		"/original/{short_url}",
 		originalHandler,
 	},
+	Route{
+		"IndexShort",
+		"GET",
+		"/{short_url}",
+		indexShortHandler,
+	},
 }
