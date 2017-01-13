@@ -3,9 +3,9 @@ package api
 import (
 	"net/http"
 	"encoding/json"
-	"github.com/learning/short-url-go/model"
-	"github.com/learning/short-url-go/repo"
-	"github.com/learning/short-url-go/utils"
+	"github.com/caixiaoqing/short-url-go/model"
+	"github.com/caixiaoqing/short-url-go/repo"
+	"github.com/caixiaoqing/short-url-go/utils"
 )
 
 /*

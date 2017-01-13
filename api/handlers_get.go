@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"github.com/learning/short-url-go/repo"
-	"github.com/learning/short-url-go/utils"
-	"github.com/learning/short-url-go/status"
-	"github.com/learning/short-url-go/model"
+	"github.com/caixiaoqing/short-url-go/repo"
+	"github.com/caixiaoqing/short-url-go/utils"
+	"github.com/caixiaoqing/short-url-go/status"
+	"github.com/caixiaoqing/short-url-go/model"
 )
 
 // Test with this curl command:

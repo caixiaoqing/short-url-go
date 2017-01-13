@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/learning/short-url-go/api"
-	"github.com/learning/short-url-go/repo"
+	"github.com/caixiaoqing/short-url-go/api"
+	"github.com/caixiaoqing/short-url-go/repo"
 	"log"
 	"net/http"
 )

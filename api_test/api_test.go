@@ -9,9 +9,9 @@ import (
 	"strings"
 	"net/http"
 
-	"github.com/learning/short-url-go/api"
-	"github.com/learning/short-url-go/model"
-	"github.com/learning/short-url-go/repo"
+	"github.com/caixiaoqing/short-url-go/api"
+	"github.com/caixiaoqing/short-url-go/model"
+	"github.com/caixiaoqing/short-url-go/repo"
 )
 
 const test_long_url_1 = "http://a.very.long.url.1"
