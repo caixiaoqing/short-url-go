@@ -75,9 +75,8 @@ func TestOriginalHandler(t *testing.T) {
 	res, err := http.DefaultClient.Do(request)
 
 	//Step 4 : verify the response
-	if res.StatusCode != http.StatusOK {
-		t.Errorf("Success expected: %d", res.StatusCode)
-	}
+	assertEqual(t, http.StatusOK, res.StatusCode, "StatusCode of response is not as expected")
+
 	var longOri model.OriginalUrl
 	err = json.NewDecoder(res.Body).Decode(&longOri)
 	if err != nil {
@@ -106,13 +105,12 @@ func TestIndexShortHandler(t *testing.T) {
 	request, err := http.NewRequest("GET", redirectUrl, nil)
 	res, err := http.DefaultClient.Do(request)
 
-	//Step 3 : verify the response
+	//Step 3 : verify the response (200)
 	if err != nil {
 		t.Errorf("Error while sending request Get /{short} %s", err)
 	}
-	if res.StatusCode != http.StatusOK {
-		t.Errorf("Success expected: %d", res.StatusCode)
-	}
+
+	assertEqual(t, http.StatusOK, res.StatusCode, "StatusCode of response is not as expected")
 }
 
 //TestCase: Redirect to Original Url from short url
@@ -134,13 +132,11 @@ func TestIndexShortHandlerFailed(t *testing.T) {
 	request, err := http.NewRequest("GET", redirectUrl, nil)
 	res, err := http.DefaultClient.Do(request)
 
-	//Step 3 : verify the response
+	//Step 3 : verify the response (400)
 	if err != nil {
 		t.Errorf("Error while sending request Get /{short} %s", err)
 	}
-	if res.StatusCode != http.StatusBadRequest {
-		t.Errorf("Success expected: %d", res.StatusCode)
-	}
+	assertEqual(t, http.StatusBadRequest, res.StatusCode, "StatusCode of response is not as expected")
 }
 
 func createShortenUrl(url string) (*http.Response, error) {
@@ -155,9 +151,9 @@ func createShortenUrl(url string) (*http.Response, error) {
 }
 
 func parseResponsePOSTShorten(t *testing.T, r *http.Response) model.ShortUrl {
-	if r.StatusCode != http.StatusOK {
-		t.Errorf("Success expected: %d", r.StatusCode) //Uh-oh this means our test failed
-	}
+
+	assertEqual(t, http.StatusOK, r.StatusCode, "StatusCode of response is not as expected")
+
 	var u model.ShortUrl
 	err := json.NewDecoder(r.Body).Decode(&u)
 	if err != nil {
