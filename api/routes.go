@@ -1,4 +1,4 @@
-package handlers
+package api
 
 import (
 	"github.com/gorilla/mux"

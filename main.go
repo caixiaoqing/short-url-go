@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/learning/short-url-go/handlers"
+	"github.com/learning/short-url-go/api"
 	"github.com/learning/short-url-go/repo"
 	"log"
 	"net/http"
@@ -9,7 +9,7 @@ import (
 
 func main() {
 	repo.InitRepo()
-	router := handlers.NewRouter()
+	router := api.NewRouter()
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

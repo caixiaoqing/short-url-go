@@ -1,4 +1,4 @@
-package handlers
+package api
 
 import (
 	"net/http"
@@ -16,12 +16,12 @@ func shortenHandler(w http.ResponseWriter, r *http.Request) {
 
 	var u model.Url
 	if r.Body == nil {
-		http.Error(w, "Please send a request body", http.StatusBadRequest)
+		http.Error(w, "Please send a request body", http.StatusBadRequest) //400
 		return
 	}
 	err := json.NewDecoder(r.Body).Decode(&u)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest) //EOF
+		http.Error(w, err.Error(), http.StatusBadRequest) //EOF  400
 		return
 	}
 	defer r.Body.Close()
@@ -33,7 +33,7 @@ func responseForShorten(w http.ResponseWriter, url string) {
 	w.Header().Set(content_type, application_json)
 	w.WriteHeader(http.StatusOK)
 
-	short := model.ShortUrl{api_url + original + string(url[len(api_url):]), url}
+	short := model.ShortUrl{API_URL + ORIGINAL + string(url[len(API_URL):]), url}
 	if err := json.NewEncoder(w).Encode(short); err != nil {
 		panic(err)
 	}
@@ -42,11 +42,11 @@ func responseForShorten(w http.ResponseWriter, url string) {
 func longToShort(url string) string {
 	id := repo.RepoFindUrl(url)
 	if id != -1 {
-		return api_url + idToShortURL(id)
+		return API_URL + idToShortURL(id)
 	}
 
 	newId := repo.RepoCreateUrl(url)
-	return api_url + idToShortURL(newId)
+	return API_URL + idToShortURL(newId)
 }
 
 func idToShortURL(id int) string {

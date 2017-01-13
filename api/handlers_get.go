@@ -1,4 +1,4 @@
-package handlers
+package api
 
 import (
 	"encoding/json"
@@ -22,8 +22,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 // curl -sX GET -H 'Content-Type: application/json' 'localhost:8080/original/000001'
 //
 func originalHandler(w http.ResponseWriter, r *http.Request) {
-	//TODO data validation
+	//Validate Short URL
 	shortUrl := r.URL.Path[len("/original/"):]
+	if !utils.IsValid(shortUrl) {
+		w.WriteHeader(http.StatusBadRequest)
+		http.Error(w, "Short Url is invalid.", http.StatusBadRequest) //400
+		return
+	}
+	//Look-up original long url from short
 	responseForOriginal(w, repo.RepoFindUrlById(utils.Decode(shortUrl)))
 }
 
@@ -32,6 +38,15 @@ func originalHandler(w http.ResponseWriter, r *http.Request) {
 //
 func indexShortHandler(w http.ResponseWriter, r *http.Request) {
 	shortUrl := r.URL.Path[1:]
+
+	//Validate Short URL
+	if !utils.IsValid(shortUrl) {
+		w.WriteHeader(http.StatusBadRequest)
+		http.Error(w, "Short Url is invalid.", http.StatusBadRequest) //400
+		return
+	}
+
+	//Look-up original long url from short and redirect to it
 	redirect(w, r, repo.RepoFindUrlById(utils.Decode(shortUrl)))
 }
 

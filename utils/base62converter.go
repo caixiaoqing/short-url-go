@@ -16,7 +16,7 @@ func Encode(number int) string {
 	strBase62 := ""
 	length := len(alphabet)
 	for number > 0 {
-		strBase62 = string(alphabet[number%length]) + strBase62
+		strBase62 = string(alphabet[number % length]) + strBase62
 		number = number / length
 	}
 
@@ -30,8 +30,20 @@ func Decode(token string) int {
 
 	number := 0
 	for _, c := range []byte(token) {
-		number = number*pow + bytes.IndexByte(chars, c)
+		number = number * pow + bytes.IndexByte(chars, c)
 	}
 
 	return number
+}
+
+// return true if token is valid base62 string, else return false
+func IsValid(token string) bool {
+	chars := []byte(alphabet)
+
+	for _, c := range []byte(token) {
+		if bytes.IndexByte(chars, c) == -1 {
+			return false;
+		}
+	}
+	return true;
 }
