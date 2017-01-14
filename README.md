@@ -56,6 +56,22 @@ go run main.go
 ```
 -----
 
+## Dependencies
+- Golang v1.7+
+- External Go packages dependencies
+
+```bash
+# production
+go get github.com/gorilla/mux           # HTTP router
+```
+
+## Cross compile for the target server
+To run the web app in the server, you need to know the server's [operating system and architecture](https://golang.org/doc/install/source#environment).
+```bash
+GOOS=linux GOARCH=amd64 go build github.com/caixiaoqing/short-url-go
+```
+Note: There is a sample build and script to run and test the short-url-go web service for linux x86 system (I build it as 386, 32-bit x86, it should be compatible with 64-bit x86 also)
+
 ## Test
 After server started, you can test it with below commands:
 ```bash
@@ -78,13 +94,3 @@ curl -sX GET -H 'Content-Type: application/json' 'localhost:8080/000001'
 ```
 -----
 
-## Dependencies
-- Golang v1.7+
-- External Go packages dependencies
-
-```bash
-# production
-go get github.com/gorilla/mux           # HTTP router
-```
-
-----
