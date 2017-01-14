@@ -1,0 +1,14 @@
+<head>
+    <title> {{ .Title }} </title>
+</head>
+
+<h3> {{ .Heading }} </h3>
+
+<nav>
+    <ul>
+        <form action="/shorten" method="post">
+            Long url: <input type="text" name="url"><br>
+            <input type="submit" value="Get Short Url">
+        </form>
+    </ul>
+</nav>

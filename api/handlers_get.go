@@ -2,8 +2,8 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
+	"html/template"
 	"github.com/caixiaoqing/short-url-go/repo"
 	"github.com/caixiaoqing/short-url-go/utils"
 	"github.com/caixiaoqing/short-url-go/status"
@@ -14,8 +14,11 @@ import (
 // curl -sX GET -H 'Content-Type: application/json' 'localhost:8080'
 //
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello Index")
+	//fmt.Fprintf(w, "Hello Index")
 	//TODO usage template
+	var templates = template.Must(template.ParseFiles("templates/index.html"))
+	myVars := model.Page{"Url Shorten Service", "My Website Heading"}
+	templates.ExecuteTemplate(w, "index.html", myVars)
 }
 
 // Test with this curl command:
