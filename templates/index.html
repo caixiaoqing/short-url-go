@@ -7,9 +7,26 @@
 <nav>
     <ol>
         <li>End point for shortening the url : <B>POST /shorten</B> <br>
-            Request body - {“url”:”http://a.very.long.url“}
+            Request body - {“url”:”http://a.very.long.url“}<br>
         </li>
-        <li>End point for getting original url : <B>GET /original/{short_url}</B> </li>
-        <li>Redirect to original( long) url : <B>GET /{short_url}</B> </li>
+            <pre style="background:#444;color:#FFF;border-color: #444;border-style: solid;border-width: 10px;width:680px">
+curl -sX POST -H 'Content-Type: application/json' 'localhost:8080/shorten' -d <br>'{"url":"http://a.very.long.url"}' <br>
+
+{"short":"http://localhost:8080/original/000001",<br>
+"redirect":"http://localhost:8080/000001"}</pre>
+
+        <li>End point for getting original url : <B>GET /original/{short_url}</B> <br>
+            <pre style="background:#444;color:#FFF;border-color: #444;border-style: solid;border-width: 10px;width:680px">
+curl -sX GET -H 'Content-Type: application/json' 'localhost:8080/original/000001' <br>
+
+{"original":"http://a.very.long.url"}</pre>
+        </li>
+
+        <li>Redirect to original( long) url : <B>GET /{short_url}</B> <br>
+            <pre style="background:#444;color:#FFF;border-color: #444;border-style: solid;border-width: 10px;width:680px">
+curl -sX GET -H 'Content-Type: application/json' 'localhost:8080/000001' <br>
+
+&lt;a href="http://a.very.long.url"&gt;Temporary Redirect&lt;/a&gt;.</pre>
+        </li>
     </ol>
 </nav>

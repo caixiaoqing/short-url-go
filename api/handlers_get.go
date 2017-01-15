@@ -15,7 +15,7 @@ import (
 //
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	var templates = template.Must(template.ParseFiles("templates/index.html"))
-	myVars := model.Page{"Url Shortening Service", "Url Shorten Service usage:"}
+	myVars := model.Page{"Url Shortening Service", "Url Shortening Service usage:"}
 	templates.ExecuteTemplate(w, "index.html", myVars)
 }
 
