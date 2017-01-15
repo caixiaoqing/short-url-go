@@ -30,6 +30,9 @@ A REST-ful API server which provides url shortener service written in Go (golang
 
 -----
 
+Below is a usage shown from the root of the api url,
+![enter image description here](https://lh3.googleusercontent.com/-bV8oWk9tmYs/WHs3WbEtxZI/AAAAAAAAAC8/gNnkRXOqh1okUM1Cv7wVacmzueN1w4y2ACLcB/s0/usage.png "usage.png")
+
 ## Build and run the server
 To run an instance of a server example:
 ```bash
