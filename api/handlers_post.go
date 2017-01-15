@@ -6,7 +6,6 @@ import (
 	"github.com/caixiaoqing/short-url-go/model"
 	"github.com/caixiaoqing/short-url-go/repo"
 	"github.com/caixiaoqing/short-url-go/utils"
-	"fmt"
 )
 
 /*
@@ -14,11 +13,6 @@ Test with this curl command:
 curl -sX POST -H 'Content-Type: application/json' 'localhost:8080/shorten' -d '{"url":"http://a.very.long.url"}'
 */
 func shortenHandler(w http.ResponseWriter, r *http.Request) {
-	{
-		r.ParseForm()
-		// logic part of log in
-		fmt.Println("url:", r.Form["url"]) //url: [http://google.com]
-	}
 
 	var u model.Url
 	if r.Body == nil {

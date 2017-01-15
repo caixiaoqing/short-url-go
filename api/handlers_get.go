@@ -14,10 +14,8 @@ import (
 // curl -sX GET -H 'Content-Type: application/json' 'localhost:8080'
 //
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	//fmt.Fprintf(w, "Hello Index")
-	//TODO usage template
 	var templates = template.Must(template.ParseFiles("templates/index.html"))
-	myVars := model.Page{"Url Shorten Service", "My Website Heading"}
+	myVars := model.Page{"Url Shortening Service", "Url Shorten Service usage:"}
 	templates.ExecuteTemplate(w, "index.html", myVars)
 }
 

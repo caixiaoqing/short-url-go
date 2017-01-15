@@ -5,10 +5,11 @@
 <h3> {{ .Heading }} </h3>
 
 <nav>
-    <ul>
-        <form action="/shorten" method="post">
-            Long url: <input type="text" name="url"><br>
-            <input type="submit" value="Get Short Url">
-        </form>
-    </ul>
+    <ol>
+        <li>End point for shortening the url : <B>POST /shorten</B> <br>
+            Request body - {“url”:”http://a.very.long.url“}
+        </li>
+        <li>End point for getting original url : <B>GET /original/{short_url}</B> </li>
+        <li>Redirect to original( long) url : <B>GET /{short_url}</B> </li>
+    </ol>
 </nav>
